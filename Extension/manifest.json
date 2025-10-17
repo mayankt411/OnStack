@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "ONBOARD.AI - Smart Onboarding Assistant",
+  "version": "2.0.0",
+  "description": "AI-powered assistant that guides employees through onboarding tasks using natural language",
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "scripting",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://github.com/*",
+    "https://slack.com/*",
+    "https://*.atlassian.net/*",
+    "https://figma.com/*",
+    "http://localhost:8000/*",
+    "https://localhost:8000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/*",
+        "https://slack.com/*",
+        "https://*.atlassian.net/*",
+        "https://figma.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "Chatbot.html"
+  }
+}
